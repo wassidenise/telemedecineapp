@@ -1,0 +1,24 @@
+{% extends "telemedicine/base.html" %}
+{% block content %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+
+    <input type="number" name="ssn" placeholder="Social Security Number">
+    <input type="text" name="lastname" placeholder="Last Name">
+    <input type="text" name="firstname" placeholder="First Name">
+    <input type="text" name="middlename" placeholder="Middle Name">
+    <p>Gender</p>
+      <input type="radio" id="f" name="gender" value="f"> <label for="f">Female</label>
+          <input type="radio" id="m" name="gender" value="m"> <label for="m">Male</label>
+    <input type="date" name="dob" placeholder="Date of Birth">
+    <input type="number" step="0.01" name="height" placeholder="Height">
+    <input type="number" name="weight" placeholder="Weight">
+    <input type="text" name="address1" placeholder="Address">
+    <input type="text" name="city" placeholder="City">
+    <input type="number" name="zipcode" placeholder="ZipCode">
+    <input type="text" name="state" placeholder="State">
+    <input type="submit" value="Add patient">
+    </form>
+{% endblock content %}
+
