@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from .models import Post
 from .models import patients
 
-
 # Dummy data
 posts = [
     {
@@ -21,11 +20,9 @@ posts = [
 ]
 
 
-
 # Handles traffic to our homepage
 def home(request):
-
-    if request.method=='POST':
+    if request.method == 'POST':
         ssn = request.POST['ssn']
         lastname = request.POST['lastname']
         firstname = request.POST['firstname']
@@ -39,13 +36,13 @@ def home(request):
         zipcode = request.POST['zipcode']
         state = request.POST['state']
 
-        obj=patients()
-        obj.ssn=ssn
-        obj.lastname=lastname
-        obj.firstname=firstname
-        obj.middlename=middlename
-        obj.dob=dob
-        obj.gender=gender
+        obj = patients()
+        obj.ssn = ssn
+        obj.lastname = lastname
+        obj.firstname = firstname
+        obj.middlename = middlename
+        obj.dob = dob
+        obj.gender = gender
         obj.height = height
         obj.weight = weight
         obj.address1 = address1
@@ -65,11 +62,12 @@ def about(request):
     }
     return render(request, 'telemedicine/about.html', {'title': 'About'})
 
+
 def patientlist(request):
     context = {
         'patients': patients.objects.all()  # Queries data from our database
     }
-    return render(request,'telemedicine/patientlist.html', context)
+    return render(request, 'telemedicine/patientlist.html', context)
 
 
 def contact(request):
