@@ -4,6 +4,7 @@ from .models import Post
 from .models import patients
 
 
+
 # Dummy data
 posts = [
     {
