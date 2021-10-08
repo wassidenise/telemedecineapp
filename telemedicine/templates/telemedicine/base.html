@@ -36,9 +36,9 @@
                         <a class="nav-item nav-link" href="{% url 'telemedicine-patientlist' %}">Patient List</a>
                     </div>
                     <!-- Navbar Right Side -->
-                    <div class="navbar-nav">
+                    <div class="navbar-nav" style="float: right;">
                         <a class="nav-item nav-link" href="#">Physician Login</a>
-                        <a class="nav-item nav-link" href="#">Patient Login</a>
+                        <a class="nav-item nav-link" href="{% url 'telemedicine-patientlogin' %}">Patient Login</a>
                         <a class="nav-item nav-link" href="#">Register</a>
                     </div>
                 </div>
@@ -52,21 +52,15 @@
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Appointments</li>
-                <li class="list-group-item list-group-item-light">Location</li>
-                <li class="list-group-item list-group-item-light">Office Hours</li>
-              </ul>
-            </p>
-          </div>
+          
         </div>
       </div>
     </main>
-
+<div class="content-section">
+            <ul>
+              <a class="nav-item nav-link" style="float: right;">Made by Matt Alyward</a>
+           </ul>
+          </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
