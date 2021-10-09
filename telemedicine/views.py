@@ -74,9 +74,4 @@ def contact(request):
     return render(request, 'telemedicine/contact.html')
 
 
-def patient(request):
-    return render(request, 'telemedicine/about.html')
 
-
-def physician(request):
-    return render(request, 'telemedicine/about.html')

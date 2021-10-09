@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'telemedicine.apps.TelemedicineConfig',
     'patientportal.apps.PatientportalConfig',
     'physicianportal.apps.PhysicianportalConfig',
+    'staff.apps.StaffConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
