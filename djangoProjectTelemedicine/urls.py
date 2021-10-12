@@ -19,6 +19,7 @@ from django.urls import path, include
 from patientportal import views as patientportal_views
 from physicianportal import views as physicianportal_views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', patientportal_views.register, name='register'),
@@ -27,4 +28,7 @@ urlpatterns = [
     path('patientportal/', patientportal_views.patientportalhome, name='patientportalhome'),
     path('patientprofile/', patientportal_views.patientprofile, name='patientprofile'),
     path('', include('telemedicine.urls')),  # Empty path makes this our homepage
+    # Agora Route
+    path('', include('agora.urls')),
+    path('admin/', admin.site.urls),
 ]
