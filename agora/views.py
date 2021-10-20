@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 import os
 import time
 import json
@@ -8,10 +6,12 @@ from django.http.response import JsonResponse
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
+from django.shortcuts import render
+
 from .agora_key.RtcTokenBuilder import RtcTokenBuilder, Role_Attendee
 from pusher import Pusher
 
-# Create your views here.
+
 # Instantiate a Pusher Client
 pusher_client = Pusher(app_id=os.environ.get('PUSHER_APP_ID'),
                        key=os.environ.get('PUSHER_KEY'),
