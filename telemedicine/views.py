@@ -83,3 +83,6 @@ def patient(request):
 
 def physician(request):
     return render(request, 'telemedicine/about.html')
+
+def patientlogin(request):
+    return render(request, 'telemedicine/patientlogin.html')
