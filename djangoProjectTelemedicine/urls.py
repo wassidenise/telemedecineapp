@@ -14,9 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('telemedicine/', include('telemedicine.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
+import agora
+from patientportal import views as patientportal_views
+from physicianportal import views as physicianportal_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('register/', patientportal_views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='patientportal/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='patientportal/logout.html'), name='logout'),
+    path('patientportal/', patientportal_views.patientportalhome, name='patientportalhome'),
+    path('patientprofile/', patientportal_views.patientprofile, name='patientprofile'),
+    # path('physicianportal/',physicianportal_views.physicianportalhome,name='physicianportalhome'),
     path('', include('telemedicine.urls')),  # Empty path makes this our homepage
+    # Agora Routes
+    path('', include('agora.urls')),
+    path('admin/', admin.site.urls),
 ]
