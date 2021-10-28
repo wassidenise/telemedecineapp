@@ -2,7 +2,7 @@
 {% block content %}
     <h1>Patient Portal</h1>
     <br>
-    <h1>Hello, {{ user.username }}!</h1>
+    <h1>Hello, {{ user.first_name }}!</h1>
     {% load static %}
         <link
           rel="stylesheet"
@@ -31,7 +31,7 @@
     
                       @click="placeCall('{{singleUser.id}}','{{singleUser}}')"
                     >
-                      Call {{singleUser}}
+                      Call {{singleUser.first_name}}
                       <span class="badge badge-light"
                         >${ getUserOnlineStatus({{singleUser.id}})}</span
                       >

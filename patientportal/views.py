@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 import os
 import time
-from django.contrib.auth.models import User
 import json
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
@@ -39,7 +38,7 @@ def register(request):
 @login_required
 def patientportalhome(request):
     User = get_user_model()
-    all_users = User.objects.filter(is_superuser=True).exclude(id=request.user.id).only('id', 'username')
+    all_users = User.objects.filter(is_superuser=True).exclude(id=request.user.id).only('id', 'first_name')
     return render(request, 'patientportal/patientportalhome.html',{'allUsers': all_users})
 
 
