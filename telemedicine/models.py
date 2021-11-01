@@ -69,7 +69,6 @@ class appointments(models.Model):
 class visits(models.Model):
     appointmentno=models.ForeignKey(appointments, on_delete=models.CASCADE)
     date=models.DateField()
-    time=models.TimeField()
     symptom=models.TextField(max_length=200)
     condition=models.TextField(max_length=200)
     notes=models.TextField(max_length=500)
