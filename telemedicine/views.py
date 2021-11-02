@@ -3,6 +3,21 @@ from django.http import HttpResponse
 from .models import Post
 from .models import patients
 
+from django.shortcuts import render
+from django.http import HttpResponse
+from .models import Post
+from .models import patients
+from .models import slots
+from .models import appointments
+from .models import appointment_date
+import datetime
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
+from django.http.response import JsonResponse
+from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+
+
 # Dummy data
 posts = [
     {
@@ -73,5 +88,35 @@ def patientlist(request):
 def contact(request):
     return render(request, 'telemedicine/contact.html')
 
+
+def patient(request):
+    return render(request, 'telemedicine/about.html')
+
+
+def physician(request):
+    return render(request, 'telemedicine/about.html')
+
+
+
+@login_required
+def appointment_scheduling(request):
+    User = get_user_model()
+    current_user_id = User.objects.filter(id=request.user.id).only('id')
+    if request.method == 'POST':
+        aptdatetime = request.POST['appointment_date']+" "+request.POST['appointment_slots']
+        timeslot=request.POST['appointment_slots']
+        print(aptdatetime)
+        obj = appointments()
+        obj.madeon = datetime.datetime.now()
+        obj.aptdatetime = aptdatetime
+        obj.patientno_id=current_user_id
+        obj.save()
+
+    context = {
+       # 'slots': slots.objects.all().filter(end_time="18:00")
+       'slots':slots.objects.all(),
+        'current_user_id': current_user_id
+    }
+    return render(request, 'telemedicine/appointment_scheduling.html', context)
 
 

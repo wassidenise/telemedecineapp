@@ -13,24 +13,21 @@ class Post(models.Model):  # Each class will be its own table in the database
         return self.name
 
 class patients(models.Model):
-    ssn=models.PositiveIntegerField(null=False)
-    lastname= models.CharField(max_length=50, null=False)
-    firstname = models.CharField(max_length=50, null=False)
-    middlename = models.CharField(max_length=50, null=False)
-    dob=models.DateField(null=False)
-    height=models.FloatField(max_length=4, null=False)
-    weight = models.FloatField(max_length=4, null=False)
-    gender=models.CharField(max_length=1,choices=(('f', 'female'),('m','male')))
-    ethnicity=models.CharField(max_length=20, null=True)
-    job=models.CharField(max_length=50, null=True)
-    smoking=models.BooleanField(default=False,null=True)
-    familyhistory=models.TextField( null=True)
-    address1=models.CharField(max_length=50, null=True)
-    address2 = models.CharField(max_length=50, null=True)
-    city=models.CharField(max_length=50)
-    zipcode=models.IntegerField()
-    state=models.CharField(max_length=2, null=True)
-    phone=models.PositiveIntegerField(max_length=10, null=True)
+    id = models.PositiveIntegerField(primary_key=True)
+    ssn = models.PositiveIntegerField()
+    dob = models.DateField()
+    height = models.FloatField()
+    gender = models.CharField(max_length=1)
+    ethnicity = models.CharField(max_length=20, blank=True, null=True)
+    job = models.CharField(max_length=50, blank=True, null=True)
+    smoking = models.BooleanField(blank=True, null=True)
+    familyhistory = models.TextField(blank=True, null=True)
+    address1 = models.CharField(max_length=50, blank=True, null=True)
+    address2 = models.CharField(max_length=50, blank=True, null=True)
+    city = models.CharField(max_length=50)
+    zipcode = models.IntegerField()
+    state = models.CharField(max_length=2, blank=True, null=True)
+    weight = models.FloatField()
 
 
 
@@ -63,12 +60,12 @@ class chartreports(models.Model):
 class appointments(models.Model):
     patientno=models.ForeignKey(patients, on_delete=models.CASCADE)
     madeon=models.DateField()
-    drname=models.CharField(max_length=200)
     aptdatetime=models.DateTimeField()
 
 class visits(models.Model):
     appointmentno=models.ForeignKey(appointments, on_delete=models.CASCADE)
     date=models.DateField()
+    time=models.TimeField(default=00)
     symptom=models.TextField(max_length=200)
     condition=models.TextField(max_length=200)
     notes=models.TextField(max_length=500)
@@ -78,6 +75,32 @@ class recordings(models.Model):
     visitno=models.ForeignKey(visits, on_delete=models.CASCADE)
     videoURL=models.URLField()
     messageURL=models.URLField()
+
+class slots(models.Model):
+    id = models.PositiveIntegerField(null=False, primary_key=True)
+    start_time = models.TextField()
+    end_time = models.TextField()
+
+class appointment_date(models.Model):
+    id = models.PositiveIntegerField(null=False, primary_key=True)
+    date = models.DateField(blank=True, null=True)
+    timeslot_id = models.IntegerField(blank=True, null=True)
+    taken = models.BooleanField(blank=True, null=True)
+
+class AuthUser(models.Model):
+    password = models.CharField(max_length=128)
+    last_login = models.DateTimeField(blank=True, null=True)
+    is_superuser = models.BooleanField()
+    username = models.CharField(unique=True, max_length=150)
+    last_name = models.CharField(max_length=150)
+    email = models.CharField(max_length=254)
+    is_staff = models.BooleanField()
+    is_active = models.BooleanField()
+    date_joined = models.DateTimeField()
+    first_name = models.CharField(max_length=150)
+    middle_name = models.CharField(db_column='middle name', max_length=50, blank=True, null=True)  # Field renamed to remove unsuitable characters.
+    phone = models.IntegerField(blank=True, null=True)
+
 
 
 
